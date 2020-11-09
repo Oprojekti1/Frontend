@@ -49,7 +49,7 @@ export default function RadioQue(props) {
 
     return (
         <div>
-        <div>{radio.radiokys}</div>
+        <div>{radio}</div>
       
         <FormControl component="fieldset">
   
@@ -59,7 +59,7 @@ export default function RadioQue(props) {
         <FormControlLabel value={answer.radiovast} control={<Radio />} label="muu" />
       </RadioGroup>
       <Button onClick={addAnswer} type="submit" variant="outlined" color="primary" >
-      
+      Save
     </Button>
     </FormControl>
         <div>{answer}</div>
