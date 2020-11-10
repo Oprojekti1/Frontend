@@ -7,11 +7,13 @@ import Button from '@material-ui/core/Button';
 
 
 
+
 export default function RadioQue(props) {
 
     const[radio, setRadio] = useState('');
-    const[answer, setAnswer] = useState([]);
+    const[answer, setAnswer] = useState({radiovast: 'Mies'});
     const[kysid,setKysid] = useState('');
+ 
 
     useEffect(() => {
         getRadios();
@@ -20,7 +22,8 @@ export default function RadioQue(props) {
 
 
     const getRadios = () => {
-        fetch('https://tuksun-orjat.herokuapp.com/kysymykset')
+        // fetch('https://tuksun-orjat.herokuapp.com/kysymykset')
+        fetch('http://localhost:8080/kysymykset')
         .then(response => response.json())
         .then(data => {
             setRadio(data[0].radiokys)
@@ -31,11 +34,12 @@ export default function RadioQue(props) {
     }
 
     const handleChange = (event) => {
-        setAnswer(event.target.value);
+        setAnswer({...answer, radiovast: event.target.value});
     }
 
     const addAnswer = () => {
-        fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
+        // fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
+        fetch('http://localhost:8080/vastaus/' + kysid, {    
             method: 'POST',
             headers: {'Content-type' : 'application/json'},
             body: JSON.stringify(answer)
@@ -44,7 +48,7 @@ export default function RadioQue(props) {
         .catch(err => console.error(err))
     }
 
-
+ 
 
 
     return (
@@ -53,16 +57,17 @@ export default function RadioQue(props) {
       
         <FormControl component="fieldset">
   
-      <RadioGroup aria-label="sukupuoli" name="gender1" value={answer} onChange={handleChange}>
-        <FormControlLabel value={answer.radiovast} control={<Radio />} label="Nainen" />
-        <FormControlLabel value={answer.radiovast} control={<Radio />} label="Mies" />
-        <FormControlLabel value={answer.radiovast} control={<Radio />} label="muu" />
+      <RadioGroup aria-label="sukupuoli" name="gender1" value={answer.radiovast} onChange={handleChange}>
+        <FormControlLabel value='Mies' control={<Radio />} label="Mies" />
+        <FormControlLabel value='Nainen' control={<Radio />} label="Nainen" />
+        <FormControlLabel value='Muu' control={<Radio />} label="Muu" />
       </RadioGroup>
       <Button onClick={addAnswer} type="submit" variant="outlined" color="primary" >
       Save
     </Button>
     </FormControl>
-        <div>{answer}</div>
+        <div>{answer.radiovast}</div>
+
         </div>
     )
 }
