@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Radio from './Components/RadioQue';
+import OpenText from './Components/OpenText';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+    <div>
+    <h1 style={{backgroundColor: " #f2f2f2", textAlign: "center"}}>Kysely</h1>
     </div>
+    <div>
+    <Container maxWidth="sm" style={{height: '700px', width: '50%', margin: 'auto'}}>
+ 
+        <Typography component={Radio} />
+        
+        <Typography component={OpenText} />
+      </Container>
+      </div>
+    
+   </div>
   );
 }
 
