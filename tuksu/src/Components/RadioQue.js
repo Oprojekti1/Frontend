@@ -22,8 +22,8 @@ export default function RadioQue(props) {
 
 
     const getRadios = () => {
-        // fetch('https://tuksun-orjat.herokuapp.com/kysymykset')
-        fetch('http://localhost:8080/kysymykset')
+         fetch('https://tuksun-orjat.herokuapp.com/kysymykset')
+        //fetch('http://localhost:8080/kysymykset')
         .then(response => response.json())
         .then(data => {
             setRadio(data[0].radiokys)
@@ -38,8 +38,8 @@ export default function RadioQue(props) {
     }
 
     const addAnswer = () => {
-        // fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
-        fetch('http://localhost:8080/vastaus/' + kysid, {    
+         fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
+       // fetch('http://localhost:8080/vastaus/' + kysid, {    
             method: 'POST',
             headers: {'Content-type' : 'application/json'},
             body: JSON.stringify(answer)
@@ -53,7 +53,7 @@ export default function RadioQue(props) {
 
     return (
         <div>
-        <div>{radio}</div>
+        <div><h1>1.{radio}</h1></div>
       
         <FormControl component="fieldset">
   
@@ -62,11 +62,11 @@ export default function RadioQue(props) {
         <FormControlLabel value='Nainen' control={<Radio />} label="Nainen" />
         <FormControlLabel value='Muu' control={<Radio />} label="Muu" />
       </RadioGroup>
-      <Button onClick={addAnswer} type="submit" variant="outlined" color="primary" >
+      <div>{answer.radiovast}</div>
+      <Button onClick={addAnswer} type="submit" variant="contained" color="default" size="small" >
       Save
     </Button>
     </FormControl>
-        <div>{answer.radiovast}</div>
 
         </div>
     )
