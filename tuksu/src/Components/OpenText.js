@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
-export default function OpenText() {
+export default function OpenText(props) {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -14,18 +15,31 @@ export default function OpenText() {
       }));
       
       
+        const [avoin, setAvoin] = useState(props.kys);
      
         const classes = useStyles();
-        const [value, setValue] = React.useState('Tähän tulee vastaus');
-      
+        const [answer, setAnswer] = useState({vast: ''});
+
+   
         const handleChange = (event) => {
-          setValue(event.target.value);
+          setAnswer({ ...answer, vast: event.target.value });
         };
+
+        const addAnswer = () => {
+          // fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
+                fetch('http://localhost:8080/vastaus/' + avoin.kysid, {    
+               method: 'POST',
+               headers: { 'Content-type': 'application/json' },
+               body: JSON.stringify(answer)
+           })
+   
+               .catch(err => console.error(err))
+       }
       
     return (
         <form className={classes.root} noValidate autoComplete="off">
         <div>
-        <div><h1>2.</h1></div>
+        <div><h1>{props.index}. {avoin.kys}</h1></div>
         <TextField
        
           id="filled-multiline-static"
@@ -34,10 +48,13 @@ export default function OpenText() {
           rows={4}
           defaultValue="Default Value"
           variant="filled"
-          value={value}
+          value={answer.vast}
           onChange={handleChange}
         
         />
+        <div>
+        <Button onClick={addAnswer} type="submit" variant="contained" color="default" size="small" >Save</Button>
+        </div>
         </div>
         </form>
     )
