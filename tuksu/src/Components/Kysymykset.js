@@ -9,29 +9,25 @@ import Button from '@material-ui/core/Button';
 export default function Kysymykset(props) {
     const [allQue, setAllQue] = useState(props.kyslista);
     // Handler funktio joka vastaanotttaa ali komponenttien sisällön
-    const [saveAll, setSaveAll] = useState([]);
-    
-    const handleChange = (event) => {
-      setSaveAll({ ...saveAll, vast : event.target.value });
-    };
-    //  useEffect(() => {
-    //    getAllQue();
+
+     useEffect(() => {
+       getAllQue();
    
    
-    //  }, [])
+     }, [])
    
-    //  const getAllQue = () => {
-    //   //  fetch('https://tuksun-orjat.herokuapp.com/kysymykset')
-    //    fetch('http://localhost:8080/kysymykset')
-    //      .then(response => response.json())
-    //      .then(data => {
-    //        console.log(data);
-    //        setAllQue(data)
+     const getAllQue = () => {
+      //  fetch('https://tuksun-orjat.herokuapp.com/kysymykset')
+       fetch('http://localhost:8080/kysymykset')
+         .then(response => response.json())
+         .then(data => {
+           console.log(data);
+           setAllQue(data)
       
-    //      })
-    //      .catch(err => console.error(err))
+         })
+         .catch(err => console.error(err))
    
-    //  }
+     }
    
     return (
         <div>
@@ -39,12 +35,12 @@ export default function Kysymykset(props) {
         <Container maxWidth="sm" style={{ height: '700px', width: '50%', margin: 'auto' }}>
         {allQue.map((kys, index) => {
         if (kys.kystyp === "Radio") {
-          return <Typography component={Radio} kys={kys} index={index + 1} handleChange={handleChange}/>
+          return <Typography component={Radio} kys={kys} index={index + 1} />
         }else if(kys.kystyp === "Avoin teksti") {
           return      <Typography component={OpenText} kys={kys} index={index + 1} />
         }
         })}
-        <Button type="submit" variant="contained" color="default" size="small" >Save</Button>
+   
       </Container>
         </div>
     );

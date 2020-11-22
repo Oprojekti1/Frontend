@@ -34,9 +34,9 @@ export default function RadioQue(props) {
 
     // }
 
-    // const handleChange = (event) => {
-    //     setAnswer({ ...answer, vast: event.target.value });
-    // }
+     const handleChange = (event) => {
+         setAnswer({ ...answer, vast: event.target.value });
+     }
 
     const addAnswer = () => {
        // fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
@@ -62,8 +62,7 @@ export default function RadioQue(props) {
                     )}
 
                 </RadioGroup>
-                <div>{answer.vast}</div>
-                <Button onClick={addAnswer} type="submit" variant="contained" color="default" size="small" >Save</Button>
+              
       </FormControl>
       <div>{answer.vast}</div>
       <Button onClick={addAnswer} type="submit" variant="contained" color="default" size="small" >Save</Button>
