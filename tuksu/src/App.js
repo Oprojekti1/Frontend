@@ -38,8 +38,10 @@ export default function App() {
         <h1 style={{ backgroundColor: " #f2f2f2", textAlign: "center" }}>Kysely</h1>
       </div>
       {allKyselyt.map((kysely, index) => {
-        
-          return <Kysymykset nimi={kysely.nimi} kyslista={kysely.kysymykset}/>
+        	console.log(kysely)
+         // Added key = {index} to get off this warning
+	 // Warning: Each child in a list should have a unique "key" prop. 
+	 return <Kysymykset key={index} nimi={kysely.nimi} kyslista={kysely.kysymykset}/>
         
       })}
       

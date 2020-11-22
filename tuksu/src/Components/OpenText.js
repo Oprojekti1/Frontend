@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Kysymykset from './Kysymykset';
 
+// Funktiolla luodaan kentät avoimille kysymyksille
 export default function OpenText(props) {
 
     const useStyles = makeStyles((theme) => ({
@@ -21,42 +22,32 @@ export default function OpenText(props) {
         const classes = useStyles();
         const [answer, setAnswer] = useState({vast: ''});
 
-   
+   	// Päivittää tekstin sivulle sekä lähettää muuttuneen arvon Kysymykset funktioon
         const handleChange = (event) => {
-          setAnswer({ ...answer, vast: event.target.value });
+	  var text = { ...answer, vast: event.target.value }
+          setAnswer(text.vast);
+		console.log(answer);
+	  props.parentMethod(event.target.name, text.vast);
         };
 
-        const addAnswer = () => {
-          // fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
-                fetch('http://localhost:8080/vastaus/' + avoin.kysid, {    
-               method: 'POST',
-               headers: { 'Content-type': 'application/json' },
-               body: JSON.stringify(answer)
-           })
-   
-               .catch(err => console.error(err))
-       }
-      
+    // Kun tekstiä muuttaa handleChange kutsutaan
     return (
-        <form className={classes.root} noValidate autoComplete="off">
         <div>
         <div><h1>{props.index}. {avoin.kys}</h1></div>
-        <TextField
+	<TextField
        
           id="filled-multiline-static"
           label="Vastaus"
           multiline
           rows={4}
-          defaultValue="Default Value"
           variant="filled"
+	  name={avoin.kysid.toString()}
           value={answer.vast}
           onChange={handleChange}
         
         />
         <div>
-       <Button onClick={addAnswer} type="submit" variant="contained" color="default" size="small" >Save</Button>
         </div>
         </div>
-        </form>
     )
 }

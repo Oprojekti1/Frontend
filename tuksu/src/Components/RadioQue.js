@@ -6,66 +6,30 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
 
-
-
+// Funktiolla luodaan kentät radio napeille
 export default function RadioQue(props) {
-
+    
     const [radio, setRadio] = useState(props.kys);
     const [answer, setAnswer] = useState({ vast: 'Mies' });
-     // const [options, setOptions] = useState([]);
-    
-    // useEffect(() => {
-    //     getRadios();
-
-    // }, [])
-
-   // const getRadios = () => {
-    //    // fetch('https://tuksun-orjat.herokuapp.com/kysymykset')
-    //         fetch('http://localhost:8080/kysymykset')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             setRadio(data[0].kys)
-    //             console.log(data[0].kys)
-    //             setKysid(data[0].kysid)
-    //             setOptions(data[0].vaihtoehdot)
-    //             console.log(data[0].vaihtoehdot)
-    //         })
-    //         .catch(err => console.error(err))
-
-    // }
-
+   
+     // Päivittää tekstin sivulle sekä lähettää muuttuneen arvon Kysymykset funktioon
      const handleChange = (event) => {
-         setAnswer({ ...answer, vast: event.target.value });
+	var vastaus = { ...answer, vast: event.target.value}
+	 setAnswer(vastaus.vast);
+         props.parentMethod(event.target.name, vastaus.vast);
      }
 
-    const addAnswer = () => {
-       // fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
-             fetch('http://localhost:8080/vastaus/' + radio.kysid, {    
-            method: 'POST',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify(answer)
-        })
-
-            .catch(err => console.error(err))
-    }
-
+    // Kun tekstiä muuttaa handleChange kutsutaan
     return (
         <div>
-            <div>
-                
-            <h1>{props.index}. {radio.kys}</h1></div>
-
-            <FormControl component="fieldset">
-                <RadioGroup aria-label="sukupuoli" name="gender1" value={answer.vast} onChange={handleChange}>
-                    {radio.vaihtoehdot.map((vaihtoehdot) =>
-                        <FormControlLabel value={vaihtoehdot.vaihtoehto} control={<Radio />} label={vaihtoehdot.vaihtoehto} />
+            <div><h1>{props.index}. {radio.kys}</h1></div>
+            <RadioGroup aria-label="sukupuoli" name="gender1" onChange={handleChange}>
+                    {radio.vaihtoehdot.map((vaihtoehdot, index) =>
+                        <FormControlLabel key={index} name={radio.kysid.toString()} value={vaihtoehdot.vaihtoehto} control={<Radio />} label={vaihtoehdot.vaihtoehto} />
                     )}
 
                 </RadioGroup>
-              
-      </FormControl>
       <div>{answer.vast}</div>
-      <Button onClick={addAnswer} type="submit" variant="contained" color="default" size="small" >Save</Button>
         </div>
     )
 }
