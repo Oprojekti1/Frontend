@@ -8,6 +8,7 @@ import Kysymykset from './Components/Kysymykset';
 export default function App() {
 
   const [allKyselyt, setAllKyselyt] = useState([]);
+  
  
   useEffect(() => {
     getAllKyselyt();
@@ -15,8 +16,10 @@ export default function App() {
 
   }, [])
 
+
+
   const getAllKyselyt = () => {
-   //  fetch('https://tuksun-orjat.herokuapp.com/kysymykset')
+   //  fetch('https://tuksun-orjat.herokuapp.com/kyselyt')
     fetch('http://localhost:8080/kyselyt')
       .then(response => response.json())
       .then(data => {

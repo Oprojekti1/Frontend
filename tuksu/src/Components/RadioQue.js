@@ -12,23 +12,14 @@ export default function RadioQue(props) {
 
     const [radio, setRadio] = useState(props.kys);
     const [answer, setAnswer] = useState({ vast: 'Mies' });
-
- 
-   
+     // const [options, setOptions] = useState([]);
     
-    // const [options, setOptions] = useState([]);
-
-
     // useEffect(() => {
     //     getRadios();
 
     // }, [])
 
-   
-
-
-
-    // const getRadios = () => {
+   // const getRadios = () => {
     //    // fetch('https://tuksun-orjat.herokuapp.com/kysymykset')
     //         fetch('http://localhost:8080/kysymykset')
     //         .then(response => response.json())
@@ -43,9 +34,9 @@ export default function RadioQue(props) {
 
     // }
 
-    const handleChange = (event) => {
-        setAnswer({ ...answer, vast: event.target.value });
-    }
+    // const handleChange = (event) => {
+    //     setAnswer({ ...answer, vast: event.target.value });
+    // }
 
     const addAnswer = () => {
        // fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
@@ -57,9 +48,6 @@ export default function RadioQue(props) {
 
             .catch(err => console.error(err))
     }
-
-
-
 
     return (
         <div>
@@ -76,10 +64,9 @@ export default function RadioQue(props) {
                 </RadioGroup>
                 <div>{answer.vast}</div>
                 <Button onClick={addAnswer} type="submit" variant="contained" color="default" size="small" >Save</Button>
-
-
-            </FormControl>
-
+      </FormControl>
+      <div>{answer.vast}</div>
+      <Button onClick={addAnswer} type="submit" variant="contained" color="default" size="small" >Save</Button>
         </div>
     )
 }
