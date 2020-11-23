@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Kysymykset from './Kysymykset';
 
-export default function OpenText() {
+// Funktiolla luodaan kentät avoimille kysymyksille
+export default function OpenText(props) {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -14,31 +17,37 @@ export default function OpenText() {
       }));
       
       
+        const [avoin, setAvoin] = useState(props.kys);
      
         const classes = useStyles();
-        const [value, setValue] = React.useState('Tähän tulee vastaus');
-      
+        const [answer, setAnswer] = useState({vast: ''});
+
+   	// Päivittää tekstin sivulle sekä lähettää muuttuneen arvon Kysymykset funktioon
         const handleChange = (event) => {
-          setValue(event.target.value);
+	  var text = { ...answer, vast: event.target.value }
+          setAnswer(text.vast);
+		console.log(answer);
+	  props.parentMethod(event.target.name, text.vast);
         };
-      
+
+    // Kun tekstiä muuttaa handleChange kutsutaan
     return (
-        <form className={classes.root} noValidate autoComplete="off">
         <div>
-        <div><h1>2.</h1></div>
-        <TextField
+        <div><h1>{props.index}. {avoin.kys}</h1></div>
+	<TextField
        
           id="filled-multiline-static"
           label="Vastaus"
           multiline
           rows={4}
-          defaultValue="Default Value"
           variant="filled"
-          value={value}
+	  name={avoin.kysid.toString()}
+          value={answer.vast}
           onChange={handleChange}
         
         />
+        <div>
         </div>
-        </form>
+        </div>
     )
 }

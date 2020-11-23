@@ -1,26 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import Radio from './Components/RadioQue';
 import OpenText from './Components/OpenText';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Kysymykset from './Components/Kysymykset';
 
-function App() {
+export default function App() {
+
+  const [allKyselyt, setAllKyselyt] = useState([]);
+  
+ 
+  useEffect(() => {
+    getAllKyselyt();
+
+
+  }, [])
+
+
+
+  const getAllKyselyt = () => {
+   //  fetch('https://tuksun-orjat.herokuapp.com/kyselyt')
+    fetch('http://localhost:8080/kyselyt')
+      .then(response => response.json())
+      .then(data => {
+     
+       setAllKyselyt(data)
+   
+      })
+      .catch(err => console.error(err))
+
+  }
+
+
   return (
     <div >
-    <div>
-    <h1 style={{backgroundColor: " #f2f2f2", textAlign: "center"}}>Kysely</h1>
-    </div>
-    <div>
-    <Container maxWidth="sm" style={{height: '700px', width: '50%', margin: 'auto'}}>
- 
-        <Typography component={Radio} />
-        
-        <Typography component={OpenText} />
-      </Container>
+      <div>
+        <h1 style={{ backgroundColor: " #f2f2f2", textAlign: "center" }}>Kysely</h1>
       </div>
-    
-   </div>
+      {allKyselyt.map((kysely, index) => {
+        	console.log(kysely)
+         // Added key = {index} to get off this warning
+	 // Warning: Each child in a list should have a unique "key" prop. 
+	 return <Kysymykset key={index} nimi={kysely.nimi} kyslista={kysely.kysymykset}/>
+        
+      })}
+      
+
+    </div>
   );
 }
 
-export default App;
+
