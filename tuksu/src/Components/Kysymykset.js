@@ -67,9 +67,9 @@ export default function Kysymykset(props) {
         <p>{props.nimi}</p>
         <Container maxWidth="sm" style={{ height: '700px', width: '50%', margin: 'auto' }}>
         {allQue.map((kys, index) => {
-        if (kys.kystyp === "Radio") {
+        if (kys.kysymystyyppi === "radiokysymys") {
           return <Typography key={index} parentMethod={setRadio} component={Radio} kys={kys} index={index + 1} />
-        }else if(kys.kystyp === "Avoin teksti") {
+        }else if(kys.kysymystyyppi === "avoin") {
           return <Typography key={index} parentMethod={setOpen} component={OpenText} kys={kys} index={index + 1} />
         }
         })}
