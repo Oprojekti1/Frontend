@@ -25,11 +25,11 @@ export default function RadioQue(props) {
             <div><h1>{props.index}. {radio.kys}</h1></div>
             <RadioGroup aria-label="sukupuoli" name="gender1" onChange={handleChange}>
                     {radio.vaihtoehdot.map((vaihtoehdot, index) =>
-                        <FormControlLabel key={index} name={radio.kysid.toString()} value={vaihtoehdot.vaihtoehto} control={<Radio />} label={vaihtoehdot.vaihtoehto} />
+                        <FormControlLabel key={index} name={radio.kysid.toString()} value={vaihtoehdot.vaihtoehtoja} control={<Radio />} label={vaihtoehdot.vaihtoehtoja} />
                     )}
 
                 </RadioGroup>
-      <div>{answer.vast}</div>
+ 
         </div>
     )
 }

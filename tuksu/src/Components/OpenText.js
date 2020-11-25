@@ -37,7 +37,7 @@ export default function OpenText(props) {
 	<TextField
        
           id="filled-multiline-static"
-          label="Vastaus"
+          
           multiline
           rows={4}
           variant="filled"
