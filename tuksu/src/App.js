@@ -19,8 +19,8 @@ export default function App() {
 
 
   const getAllKyselyt = () => {
-   //  fetch('https://tuksun-orjat.herokuapp.com/kyselyt')
-    fetch('http://localhost:8080/kyselyt')
+    fetch('https://tuksun-orjat.herokuapp.com/kyselyt')
+   // fetch('http://localhost:8080/kyselyt')
       .then(response => response.json())
       .then(data => {
      

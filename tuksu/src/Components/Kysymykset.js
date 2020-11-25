@@ -19,8 +19,9 @@ export default function Kysymykset(props) {
     	console.log("POSTING...");
 	console.log(vastaukset);
     	Object.keys(vastaukset).map(function(kysId) {
-          	// fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
-		fetch('http://localhost:8080/vastaus/' + kysId, {		method: 'POST',
+          	 fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysid, {
+  //	fetch('http://localhost:8080/vastaus/' + kysId, 
+  		method: 'POST',
 		headers: {'Content-type':'application/json'},
 		body: JSON.stringify({vast:vastaukset[kysId]})
 	})
