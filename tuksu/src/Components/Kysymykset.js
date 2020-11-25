@@ -11,25 +11,8 @@ export default function Kysymykset(props) {
     var vastaukset = {};
     // Handler funktio joka vastaanotttaa ali komponenttien sisällön
 
-     useEffect(() => {
-       getAllQue();
    
-   
-     }, [])
-   
-     // Hakee kysymykset palvelimelta ja täyttää ne listaan
-     const getAllQue = () => {
-      //  fetch('https://tuksun-orjat.herokuapp.com/kysymykset')
-       fetch('http://localhost:8080/kysymykset')
-         .then(response => response.json())
-         .then(data => {
-           console.log(data);
-           setAllQue(data)
-      
-         })
-         .catch(err => console.error(err))
-   
-     }
+
  
     // Looppaa vastaukset ja postaa ne palvelimelle
     const postAnswers = () => {
