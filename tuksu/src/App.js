@@ -19,8 +19,8 @@ export default function App() {
 
 
   const getAllKyselyt = () => {
-    fetch('https://tuksun-orjat.herokuapp.com/kyselyt')
-   // fetch('http://localhost:8080/kyselyt')
+  //  fetch('https://tuksun-orjat.herokuapp.com/kyselyt')
+    fetch('http://localhost:8080/kyselyt')
       .then(response => response.json())
       .then(data => {
      
@@ -41,7 +41,7 @@ export default function App() {
         	console.log(kysely)
          // Added key = {index} to get off this warning
 	 // Warning: Each child in a list should have a unique "key" prop. 
-	 return <Kysymykset key={index} nimi={kysely.nimi} kyslista={kysely.kysymykset}/>
+	 return <Kysymykset key={index} nimi={kysely.nimi} intro={kysely.intro} kyslista={kysely.kysymykset}/>
         
       })}
       

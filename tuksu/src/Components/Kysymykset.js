@@ -19,8 +19,8 @@ export default function Kysymykset(props) {
     	console.log("POSTING...");
 	console.log(vastaukset);
     	Object.keys(vastaukset).map(function(kysId) {
-          	 fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysId, {
-	//	fetch('http://localhost:8080/vastaus/' + kysId, {		
+  //        	 fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysId, {
+		fetch('http://localhost:8080/vastaus/' + kysId, {		
     method: 'POST',
 		headers: {'Content-type':'application/json'},
 		body: JSON.stringify({vast:vastaukset[kysId]})
@@ -48,10 +48,12 @@ export default function Kysymykset(props) {
     // Submit nappi kutsuu postAnswers funktiota joka toteutta post pyynnöt
     return (
         <div>
-        <p>{props.nimi}</p>
+     
         <Container maxWidth="sm" style={{ height: '700px', width: '50%', margin: 'auto' }}>
+        <p>{props.nimi}</p>
+        <p>{props.intro}</p>
         {allQue.map((kys, index) => {
-        if (kys.kysymystyyppi === "radiokysymys") {
+        if (kys.kysymystyyppi === "radio") {
           return <Typography key={index} parentMethod={setRadio} component={Radio} kys={kys} index={index + 1} />
         }else if(kys.kysymystyyppi === "avoin") {
           return <Typography key={index} parentMethod={setOpen} component={OpenText} kys={kys} index={index + 1} />
