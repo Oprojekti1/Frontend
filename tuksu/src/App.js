@@ -4,11 +4,12 @@ import OpenText from './Components/OpenText';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Kysymykset from './Components/Kysymykset';
+import TabApp from './Components/TabApp';
 
 export default function App() {
 
   const [allKyselyt, setAllKyselyt] = useState([]);
-  
+ 
  
   useEffect(() => {
     getAllKyselyt();
@@ -19,8 +20,8 @@ export default function App() {
 
 
   const getAllKyselyt = () => {
-  //  fetch('https://tuksun-orjat.herokuapp.com/kyselyt')
-    fetch('http://localhost:8080/kyselyt')
+    fetch('https://orjat.herokuapp.com/kyselyt')
+  //  fetch('http://localhost:8080/kyselyt')
       .then(response => response.json())
       .then(data => {
      
@@ -34,9 +35,7 @@ export default function App() {
 
   return (
     <div >
-      <div>
-        <h1 style={{ backgroundColor: " #f2f2f2", textAlign: "center" }}>Kysely</h1>
-      </div>
+      <TabApp />
       {allKyselyt.map((kysely, index) => {
         	console.log(kysely)
          // Added key = {index} to get off this warning
