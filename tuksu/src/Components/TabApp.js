@@ -45,7 +45,7 @@ function TabApp() {
     return(
         <div>
             <Router>
-            <AppBar position="static">
+            <AppBar position="static" color= "#f2f2f2">
                 <Tabs value={value} onChange={handleChange}>
                     <Tab value="one"label="Kyselyt"/>
                     <Tab value="two"label="Grafiikat"/> 
