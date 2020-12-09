@@ -8,28 +8,27 @@ import Button from '@material-ui/core/Button';
 // Funktiolla luodaan kysely formi
 export default function Kysymykset(props) {
   const [allKyselyt, setAllKyselyt] = useState([]);
+  const [prop, setProp] = useState({nimi: '', intro: '', kyslista: ''});//*********************** */
     const [allQue, setAllQue] = useState(props.kyslista);
     var vastaukset = {};
+    
     // Handler funktio joka vastaanotttaa ali komponenttien sisällön
 
     useEffect(() => {
-      getAllKyselyt();
-  
-  
+      getAllKyselytB();
     }, [])
 
-    const getAllKyselyt = () => {
+    const getAllKyselytB = () => {
       fetch('https://orjat.herokuapp.com/kyselyt')
     //  fetch('http://localhost:8080/kyselyt')
         .then(response => response.json())
-        .then(data => {
-       
-         setAllKyselyt(data)
-     
-        })
+        .then(data => {setProp ({...prop, nimi:  data.nimi,  intro: data.intro, kyslista: data.kyslista})})//************** */
+    //  .then(response => response.json())
+    //    .then(data => { setAllKyselyt(data) } )
         .catch(err => console.error(err))
-  
+    //    console.log(allKyselyt)
     }
+  
 
  
     // Looppaa vastaukset ja postaa ne palvelimelle

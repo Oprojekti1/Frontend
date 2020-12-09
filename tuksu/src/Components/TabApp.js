@@ -47,19 +47,13 @@ function TabApp() {
             <Router>
             <AppBar position="static">
                 <Tabs value={value} onChange={handleChange}>
-                    <Tab value="one"label="Home"/>
-                    <Tab value="two"label="Todolist"/> 
+                    <Tab value="one"label="Kyselyt"/>
+                    <Tab value="two"label="Grafiikat"/> 
                 </ Tabs>
             </ AppBar>
-            {value === 'one' && <div><Route render={() => <h1> This is home page </h1>}/></div>}
-            {value === 'two' && <div><Route exact path = "/"component =  {allKyselyt.map((kysely, index) => {
-        	console.log(kysely)
-         // Added key = {index} to get off this warning
-	 // Warning: Each child in a list should have a unique "key" prop. 
-	 return <Kysymykset key={index} nimi={kysely.nimi} intro={kysely.intro} kyslista={kysely.kysymykset}/>
-        
-      })}/></div>}
-            
+            {value === 'one' && <div><Route render={() => <h1> Kyselyt </h1>}/></div>}
+            {value === 'two' && <div><Route render={() => <h1> Grafiikat </h1>}/></div>}
+           
             </Router>
         </div>
 
