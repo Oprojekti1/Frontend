@@ -7,11 +7,28 @@ import Button from '@material-ui/core/Button';
 
 // Funktiolla luodaan kysely formi
 export default function Kysymykset(props) {
+  const [allKyselyt, setAllKyselyt] = useState([]);
+  const [prop, setProp] = useState({nimi: '', intro: '', kyslista: ''});//*********************** */
     const [allQue, setAllQue] = useState(props.kyslista);
     var vastaukset = {};
+    
     // Handler funktio joka vastaanotttaa ali komponenttien sisällön
 
-   
+    useEffect(() => {
+      getAllKyselytB();
+    }, [])
+
+    const getAllKyselytB = () => {
+      fetch('https://orjat.herokuapp.com/kyselyt')
+    //  fetch('http://localhost:8080/kyselyt')
+        .then(response => response.json())
+        .then(data => {setProp ({...prop, nimi:  data.nimi,  intro: data.intro, kyslista: data.kyslista})})//************** */
+    //  .then(response => response.json())
+    //    .then(data => { setAllKyselyt(data) } )
+        .catch(err => console.error(err))
+    //    console.log(allKyselyt)
+    }
+  
 
  
     // Looppaa vastaukset ja postaa ne palvelimelle
@@ -19,8 +36,8 @@ export default function Kysymykset(props) {
     	console.log("POSTING...");
 	console.log(vastaukset);
     	Object.keys(vastaukset).map(function(kysId) {
-  //        	 fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysId, {
-		fetch('http://localhost:8080/vastaus/' + kysId, {		
+          	 fetch('https://orjat.herokuapp.com/vastaus/' + kysId, {
+	//	fetch('http://localhost:8080/vastaus/' + kysId, {		
     method: 'POST',
 		headers: {'Content-type':'application/json'},
 		body: JSON.stringify({vast:vastaukset[kysId]})
@@ -47,7 +64,11 @@ export default function Kysymykset(props) {
     // parentMethod annetaan funktioille, jotta ne voivat palauttaa arvoja takaisin
     // Submit nappi kutsuu postAnswers funktiota joka toteutta post pyynnöt
     return (
+        
         <div>
+          
+        <h1 style={{ backgroundColor: " #f2f2f2", textAlign: "center" }}>Kysely</h1>
+        
      
         <Container maxWidth="sm" style={{ height: '700px', width: '50%', margin: 'auto' }}>
         <p>{props.nimi}</p>
