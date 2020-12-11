@@ -33,17 +33,17 @@ export default function App() {
   return (
     <div >
       <TabApp />
-      {allKyselyt.map((kysely, index) => {
-        //	console.log(kysely)
-         // Added key = {index} to get off this warning
-	 // Warning: Each child in a list should have a unique "key" prop. 
-	 return <Kysymykset key={index} nimi={kysely.nimi} intro={kysely.intro} kyslista={kysely.kysymykset}/>
-        
-      })}
+      
       
 
     </div>
   );
-}
-
+ }
+// {allKyselyt.map((kysely, index) => {
+//   //	console.log(kysely)
+//    // Added key = {index} to get off this warning
+// // Warning: Each child in a list should have a unique "key" prop. 
+// return <Kysymykset key={index} nimi={kysely.nimi} intro={kysely.intro} kyslista={kysely.kysymykset}/>
+  
+// })}
 

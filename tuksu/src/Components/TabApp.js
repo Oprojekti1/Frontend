@@ -6,10 +6,10 @@ import Tab from '@material-ui/core/Tab';
 import  {BrowserRouter as Router,
         Route,
         } from 'react-router-dom';
-//import Home from './Home';
+import Home from './Home';
 //import ToDo from './todo';
 import Kysymykset from './Kysymykset';
-
+import Grafiikat from './Grafiikat'
 
 function TabApp() {
     
@@ -48,16 +48,17 @@ function TabApp() {
             <AppBar position="static" color= "#f2f2f2">
                 <Tabs value={value} onChange={handleChange}>
                     <Tab value="one"label="Kyselyt"/>
-                    <Tab value="two"label="Grafiikat"/> 
+                    <Tab value="two"label="Kysely"/> 
                 </ Tabs>
             </ AppBar>
-            {value === 'one' && <div><Route render={() => <h1> Kyselyt </h1>}/></div>}
-            {value === 'two' && <div><Route render={() => <h1> Grafiikat </h1>}/></div>}
+            {value === 'one' && <div><Route exact path = "/"component = {Home}/></div>}
+            {value === 'two' && <div><Route exact path = "/"component = {Grafiikat}/></div>}
+            
            
             </Router>
         </div>
 
     )
 }
-
+//{value === 'two' && <div><Route render={{Grafiikat}}/></div>}
 export default TabApp;
