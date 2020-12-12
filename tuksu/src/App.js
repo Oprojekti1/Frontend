@@ -8,24 +8,24 @@ import TabApp from './Components/TabApp';
 
 export default function App() {
 
-  const [allKyselyt, setAllKyselyt] = useState([]);
-  //const [prop, setProp] = useState(nimi=[], intro=[], kyslista=[]);
+  // const [allKyselyt, setAllKyselyt] = useState([]);
+  // //const [prop, setProp] = useState(nimi=[], intro=[], kyslista=[]);
  
-  useEffect(() => {
-    getAllKyselyt();
-    //console.log(allKyselyt);
-  }, [])
+  // useEffect(() => {
+  //   getAllKyselyt();
+  //   //console.log(allKyselyt);
+  // }, [])
 
-  const getAllKyselyt = () => {
-    fetch('https://orjat.herokuapp.com/kyselyt')
-  //  fetch('http://localhost:8080/kyselyt')
-      .then(response => response.json())
-    //  .then(data => {setProp (nimi =  data.nimi,  intro = data.intro, kyslista = data.kyslista)})
-      .then(data => { setAllKyselyt(data) })
-      .then(data => console.log(data.nimi))
-      .catch(err => console.error(err))
+  // const getAllKyselyt = () => {
+  //   fetch('https://orjat.herokuapp.com/kyselyt')
+  // //  fetch('http://localhost:8080/kyselyt')
+  //     .then(response => response.json())
+  //   //  .then(data => {setProp (nimi =  data.nimi,  intro = data.intro, kyslista = data.kyslista)})
+  //     .then(data => { setAllKyselyt(data) })
+  //     .then(data => console.log(data.nimi))
+  //     .catch(err => console.error(err))
 
-  }
+  // }
 
 
 
