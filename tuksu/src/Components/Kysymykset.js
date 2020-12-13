@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState } from 'react';
 import Radio from './RadioQue';
 import OpenText from './OpenText';
 import Typography from '@material-ui/core/Typography';
@@ -7,29 +7,10 @@ import Button from '@material-ui/core/Button';
 
 // Funktiolla luodaan kysely formi
 export default function Kysymykset(props) {
-  const [allKyselyt, setAllKyselyt] = useState([]);
-  const [prop, setProp] = useState({nimi: '', intro: '', kyslista: ''});//*********************** */
+    
     const [allQue, setAllQue] = useState(props.kyslista);
     var vastaukset = {};
-    
     // Handler funktio joka vastaanotttaa ali komponenttien sisällön
-
-    useEffect(() => {
-      getAllKyselytB();
-    }, [])
-
-    const getAllKyselytB = () => {
-      fetch('https://orjat.herokuapp.com/kyselyt')
-    //  fetch('http://localhost:8080/kyselyt')
-        .then(response => response.json())
-        .then(data => {setProp ({...prop, nimi:  data.nimi,  intro: data.intro, kyslista: data.kyslista})})//************** */
-    //  .then(response => response.json())
-    //    .then(data => { setAllKyselyt(data) } )
-        .catch(err => console.error(err))
-    //    console.log(allKyselyt)
-    }
-  
-
  
     // Looppaa vastaukset ja postaa ne palvelimelle
     const postAnswers = () => {
@@ -86,4 +67,3 @@ export default function Kysymykset(props) {
         </div>
     );
 }
-
