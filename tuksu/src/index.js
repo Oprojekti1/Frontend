@@ -1,3 +1,22 @@
+// import React from 'react';
+// import { render } from 'react-dom';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+// import Hello from './Components/Home';
+// //import Goodbye from './Components/Grafiikat';
+// import Grafiikat from './Components/Grafiikat';
+
+// const App = () => (
+//   <Router>
+//     <Switch>
+//       <Route exact path="/" component={Hello} />
+//       <Route path="/goodbye" component={Grafiikat} />
+//     </Switch>
+//   </Router>
+// );
+
+//render(<App />, document.getElementById('root'));
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
