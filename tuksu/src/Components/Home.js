@@ -5,6 +5,7 @@ import  {BrowserRouter as Router,
     } from 'react-router-dom';
 import Ttu from './ttu';
 
+
 export default function Home() {
     const [allKyselytC, setAllKyselytC] = useState([]); 
     const [value, setValue] = useState('one');
@@ -20,7 +21,7 @@ export default function Home() {
       }, [])
 
       const getAllKyselytC = () => {
-        fetch('https://orjat.herokuapp.com/kyselyt')
+        fetch('https://tuksun-orjat.herokuapp.com/kyselyt')
       //  fetch('http://localhost:8080/kyselyt')
         .then(response => response.json())
           .then(data => { setAllKyselytC(data[0]) } )
@@ -32,8 +33,10 @@ export default function Home() {
                 <div>
                     <h1>Kyselyt</h1>
                     <Router>
+   
+
                     <Button onClick={handleChange} value="two" type="submit" variant="contained" color="default" size="small" >{allKyselytC.nimi}</Button>
-                    {value !== 'one' && <div><Route exact path = "/"component = {Ttu}/></div>}
+                    {value !== 'one' && <div><Route exact path = "/"component = {Ttu}/></div>} 
                     </Router>
                 </div>
             )

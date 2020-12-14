@@ -17,7 +17,7 @@ export default function Kysymykset(props) {
     	console.log("POSTING...");
 	console.log(vastaukset);
     	Object.keys(vastaukset).map(function(kysId) {
-          	 fetch('https://orjat.herokuapp.com/vastaus/' + kysId, {
+          	 fetch('https://tuksun-orjat.herokuapp.com/vastaus/' + kysId, {
 	//	fetch('http://localhost:8080/vastaus/' + kysId, {		
     method: 'POST',
 		headers: {'Content-type':'application/json'},
@@ -47,12 +47,12 @@ export default function Kysymykset(props) {
     return (
         
         <div>
-          
-        <h1 style={{ backgroundColor: " #f2f2f2", textAlign: "center" }}>Kysely</h1>
+      
+        <h1 style={{ backgroundColor: " #f2f2f2", textAlign: "center" }}> {props.nimi} kysely</h1>
         
      
         <Container maxWidth="sm" style={{ height: '700px', width: '50%', margin: 'auto' }}>
-        <p>{props.nimi}</p>
+   
         <p>{props.intro}</p>
         {allQue.map((kys, index) => {
         if (kys.kysymystyyppi === "radio") {

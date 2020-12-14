@@ -24,10 +24,10 @@ export default function OpenText(props) {
 
    	// Päivittää tekstin sivulle sekä lähettää muuttuneen arvon Kysymykset funktioon
         const handleChange = (event) => {
-	  var text = { ...answer, vast: event.target.value }
+	        var text = { ...answer, vast: event.target.value }
           setAnswer(text.vast);
-		console.log(answer);
-	  props.parentMethod(event.target.name, text.vast);
+		      console.log(answer);
+	        props.parentMethod(event.target.name, text.vast);
         };
 
     // Kun tekstiä muuttaa handleChange kutsutaan
@@ -37,11 +37,10 @@ export default function OpenText(props) {
 	<TextField
        
           id="filled-multiline-static"
-          
           multiline
           rows={4}
           variant="filled"
-	  name={avoin.kysid.toString()}
+	        name={avoin.kysid.toString()}
           value={answer.vast}
           onChange={handleChange}
         
